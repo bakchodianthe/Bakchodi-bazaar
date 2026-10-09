@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bakchod Bazaar</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);--o:#ff6b2c;--d:#1f2430;--g:#f3f4f7}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--d);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--d);color:#fff;display:flex;align-items:center;gap:10px;padding:10px 14px}
+.logo{font-weight:800;font-size:18px;white-space:nowrap}.logo b{color:var(--o)}
+.search{flex:1;min-width:0;border:0;border-radius:8px;padding:9px 12px;font-size:14px}
+.cartb{background:none;border:0;color:#fff;font-size:22px;position:relative;cursor:pointer}
+.cartb span{position:absolute;top:-6px;right:-8px;background:var(--o);border-radius:10px;font-size:11px;padding:1px 6px}
+.hero{background:linear-gradient(120deg,#ff6b2c,#ff2e63);color:#fff;padding:40px 18px;text-align:center;min-height:78vh;display:flex;flex-direction:column;justify-content:center;align-items:center}.hero .btn{width:auto;padding:12px 26px;margin-top:22px}
+.hero h1{margin:0 0 8px;font-size:clamp(24px,6vw,40px)}.hero p{margin:0;opacity:.92}
+.chips{display:flex;gap:8px;overflow-x:auto;padding:12px 14px;background:var(--g)}
+.chips i{font-style:normal;background:#fff;border-radius:20px;padding:6px 14px;font-size:13px;white-space:nowrap}
+main{max-width:760px;margin:0 auto;padding:18px 14px 50px}
+h2{margin:6px 0 16px}
+.card{display:flex;flex-direction:column;gap:14px;align-items:stretch;border:1px solid #e4e6ec;border-radius:16px;padding:14px;margin-bottom:22px;cursor:pointer;background:#fff;box-shadow:0 2px 10px #0000000d;opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease,box-shadow .2s}
+.card.in{opacity:1;transform:none}.card:hover{box-shadow:0 8px 24px #00000020}
+.pic{width:100%;height:220px;border-radius:12px;display:grid;place-items:center;font-size:96px}
+.card h3{margin:0 0 4px}.card p{margin:0 0 6px;color:#666;font-size:14px}
+.price{font-weight:800;font-size:20px}.stars{color:#f5a623;font-size:13px}
+footer{text-align:center;color:#999;font-size:12px;padding:20px}
+.ov{position:fixed;background:#fff;z-index:20;overflow-y:auto;transition:all .45s cubic-bezier(.2,.8,.2,1);padding-top:env(safe-area-inset-top,0px)}
+.ov .in{max-width:760px;margin:0 auto;padding:16px 14px 60px;animation:f .4s}
+@keyframes f{from{opacity:0}to{opacity:1}}
+.back{border:0;background:var(--g);border-radius:8px;padding:8px 12px;cursor:pointer;margin-bottom:12px}
+.big{height:min(55vw,300px);border-radius:16px;display:grid;place-items:center;font-size:110px}
+.thumbs{display:flex;gap:10px;margin:10px 0 16px}
+.thumbs div{width:64px;height:64px;border-radius:10px;display:grid;place-items:center;font-size:30px;cursor:pointer;border:2px solid transparent}
+.thumbs .on{border-color:var(--o)}
+.btn{width:100%;border:0;border-radius:12px;padding:14px;font-size:16px;font-weight:700;cursor:pointer;margin-top:10px;background:#ffd24a;color:#111}
+.btn.o{background:var(--o);color:#fff}
+.desc{line-height:1.6;color:#444}
+label{display:block;font-size:13px;margin:12px 0 4px;color:#555}
+input,textarea{width:100%;padding:11px;border:1px solid #ccd;border-radius:8px;font-size:15px;font-family:inherit}
+.row{display:flex;justify-content:space-between;padding:8px 0;font-size:15px}
+.bill{border:1px solid #e4e6ec;border-radius:14px;padding:6px 16px;margin:12px 0}
+.tot{border-top:2px dashed #ccc;font-weight:800;font-size:18px}
+.pk{background:#111;color:#fff;display:grid;place-items:center;text-align:center;inset:0;overflow:hidden}
+.pop{background:#fff;color:#111;border-radius:20px;padding:30px 24px;width:min(88vw,380px);animation:pp .5s cubic-bezier(.3,1.6,.5,1)}
+.pop h1{margin:0 0 10px;font-size:30px}
+@keyframes pp{from{transform:scale(.2);opacity:0}to{transform:none;opacity:1}}
+.rain{position:absolute;top:-50px;font-size:34px;animation:r linear forwards;pointer-events:none}
+@keyframes r{to{transform:translateY(115vh) rotate(360deg)}}
+.ad{font-size:13px;word-break:break-word}.ad div{border-bottom:1px solid #eee;padding:8px 0}
+.rv{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}.rv.in{opacity:1;transform:none}
+.sec{max-width:760px;margin:0 auto;padding:60px 18px;text-align:center}.sec p{color:#555;line-height:1.7}
+.alt{background:var(--g);max-width:none}.alt>div{max-width:760px;margin:0 auto}
+.stats{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:24px}.stats div{flex:1 1 140px;background:#fff;border-radius:14px;padding:18px;box-shadow:0 2px 10px #0000000d}.stats b{display:block;font-size:26px;color:var(--o)}
+.steps{display:grid;gap:14px;margin-top:22px;text-align:left}.steps div{background:#fff;border-radius:14px;padding:16px;box-shadow:0 2px 10px #0000000d}.steps b{color:var(--o)}
+.tq{background:#fff;border-radius:14px;padding:16px;margin:14px 0;text-align:left;box-shadow:0 2px 10px #0000000d}.tq small{color:#888}
+details.q{background:#fff;border-radius:12px;padding:14px;margin:10px 0;text-align:left}details.q summary{font-weight:700;cursor:pointer}
+</style></head><body>
+<header><div class="logo">Bakchod<b>Bazaar</b></div><input class="search" placeholder="Search for feelings, peace, parents…"><button class="cartb" id="cb">🛒<span id="cc">0</span></button></header>
+<div class="hero"><h1>India's #1 Emotions Marketplace</h1><p>Feelings. Delivered. (Probably.)</p><button class="btn o" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Scroll to explore ↓</button></div>
+<div class="chips"><i>🔥 Trending</i><i>💘 Love</i><i>🧘 Wellness</i><i>👨‍👩‍👦 Family</i><i>🚚 Free delivery*</i></div>
+<section class="sec rv" id="about"><h2>About Bakchod Bazaar 🛍️</h2><p>Founded in a hostel room at 3 AM by someone who had too much free time and not enough peace of mind. We sell the things money <i>can't</i> buy, at prices your wallet <i>can't</i> afford. Trusted by absolutely nobody, loved by a few.</p><div class="stats"><div><b>10L+</b>Hearts handled</div><div><b>4.9★</b>Fake reviews</div><div><b>0</b>Refunds given</div></div></section>
+<section class="sec alt rv"><div><h2>How it works 🚚</h2><div class="steps"><div><b>1. Pick</b> — choose a feeling you desperately need.</div><div><b>2. Add to cart</b> — tell yourself you deserve it.</div><div><b>3. Pay</b> — we take your hope, you take our word.</div><div><b>4. Wait</b> — delivery in 3-5 business years.</div></div></div></section>
+<section class="sec rv"><h2>Why choose us? 💯</h2><p>🔒 100% secure* &nbsp; ⚡ Super-slow delivery &nbsp; 🤝 Customer care that never picks up &nbsp; 🏆 Award-winning (awarded by our cousin)</p></section>
+<main id="shop"><h2>Trending Right Now</h2><div id="list"></div></main>
+<section class="sec alt rv"><div><h2>What customers say 💬</h2><div class="tq">"Ordered peace of mind. Still waiting. 5 stars."<br><small>— Rohit, Delhi</small></div><div class="tq">"Pyaar arrived, but it was for my roommate."<br><small>— Ananya, Pune</small></div><div class="tq">"Mummy papa ne video mein bola proud hain. Fir alarm baj gaya."<br><small>— Karan, Jaipur</small></div></div></section>
+<section class="sec rv"><h2>FAQs 🤔</h2><details class="q"><summary>Is this legit?</summary><p>As legit as your Wi-Fi at 2 AM.</p></details><details class="q"><summary>Can I return a product?</summary><p>Feelings once felt cannot be returned.</p></details><details class="q"><summary>Is COD available?</summary><p>Only Cash On Hope.</p></details></section>
+<footer>© Bakchod Bazaar · *terms &amp; conditions apply · <a href="#admin" style="color:#bbb">admin</a></footer>
+<div id="layer"></div>
+<script>
+var P=[
+{id:0,n:"Uska Pyaar",e:"💘",g:"linear-gradient(135deg,#ff9a9e,#fad0c4)",p:499,r:"★★★★☆ (12,430)",s:"Limited stock. Seller: Kismat Traders.",d:"Hand-picked, 100% genuine, premium quality pyaar. Please note: may arrive late, may arrive never. Not responsible if she was just being nice. Best consumed with patience, one-sided hope and zero expectations. Does not come with replies on WhatsApp.",x:["💘","💌","🌹","🥺"]},
+{id:1,n:"Peace of Mind",e:"🧘",g:"linear-gradient(135deg,#a1c4fd,#c2e9fb)",p:299,r:"★★★★★ (98,112)",s:"Out of stock in most cities.",d:"Rare, imported, ISI-marked peace of mind. Helps you ignore relatives, ignore exams, ignore your ex's story. Side effects include sleeping on time and not checking your phone every 2 minutes. Warning: Monday morning may void warranty.",x:["🧘","🌿","😴","🏔️"]},
+{id:2,n:"A Video of Your Parents Saying They're Proud of You",e:"🎬",g:"linear-gradient(135deg,#fbc2eb,#a6c1ee)",p:999,r:"★★★★★ (1,204)",s:"Personally narrated. Super rare.",d:"A heartfelt HD video where your parents finally say 'beta, we are proud of you'. Includes: dramatic pause, a tear, and 'tu theek se kha raha hai na?'. Delivered in 3-5 business years. Cannot be refunded once emotional damage has occurred.",x:["🎬","👨‍👩‍👦","🥹","🏅"]}];
+var FORM_URL="";var cart=[],cur=null,$=function(i){return document.getElementById(i)};
+function esc(s){var d=document.createElement('div');d.textContent=s;return d.innerHTML}
+var L=$('list');
+P.forEach(function(p){var c=document.createElement('div');c.className='card';c.innerHTML='<div class="pic" style="background:'+p.g+'">'+p.e+'</div><div><h3>'+esc(p.n)+'</h3><p>'+esc(p.s)+'</p><div class="stars">'+p.r+'</div></div>';c.onclick=function(){openP(p,c)};L.appendChild(c)});
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.15});
+document.querySelectorAll('.card,.rv').forEach(function(c){io.observe(c)});
+function ov(h,r){var o=document.createElement('div');o.className='ov';if(r){var b=r.getBoundingClientRect();o.style.cssText='top:'+b.top+'px;left:'+b.left+'px;width:'+b.width+'px;height:'+b.height+'px;border-radius:16px;overflow:hidden';$('layer').appendChild(o);o.offsetHeight;o.style.cssText='top:0;left:0;width:100%;height:100%;border-radius:0';setTimeout(function(){o.innerHTML=h},380)}else{o.style.cssText='top:0;left:0;width:100%;height:100%';o.innerHTML=h;$('layer').appendChild(o)}return o}
+function closeAll(){$('layer').innerHTML=''}
+function openP(p,c){cur=p;var o=ov('<div class="in"><button class="back">← Back</button><div class="big" id="bg" style="background:'+p.g+'">'+p.x[0]+'</div><div class="thumbs">'+p.x.map(function(x,i){return '<div class="'+(i?'':'on')+'" style="background:'+p.g+'">'+x+'</div>'}).join('')+'</div><h1 style="margin:0 0 6px">'+esc(p.n)+'</h1><div class="stars">'+p.r+'</div><p style="margin:10px 0;font-weight:700;color:#ff6b2c">💸 Price will be shown on the payment page</p><p class="desc">'+esc(p.d)+'</p><div id="act"><button class="btn" id="add">Add to Cart</button></div></div>',c);
+setTimeout(function(){var q=function(s){return o.querySelector(s)};if(!q('.back'))return;q('.back').onclick=closeAll;
+o.querySelectorAll('.thumbs div').forEach(function(t){t.onclick=function(){o.querySelectorAll('.thumbs div').forEach(function(z){z.classList.remove('on')});t.classList.add('on');q('#bg').textContent=t.textContent}});
+q('#add').onclick=function(){if(!cart.some(function(x){return x.id==p.id}))cart.push(p);$('cc').textContent=cart.length;q('#act').innerHTML='<p style="color:#188a3e;font-weight:700">✓ Added to cart</p><button class="btn o" id="buy">Buy Now</button>';q('#buy').onclick=details}},420)}
+function details(){closeAll();var o=ov('<div class="in"><button class="back">← Back</button><h2>Delivery Details</h2><form id="f"><label>Full name</label><input name="name" required><label>Phone number</label><input name="phone" type="tel" required><label>Email</label><input name="email" type="email"><label>Address</label><textarea name="address" rows="3" required></textarea><label>City</label><input name="city" required><label>Pincode</label><input name="pin" required><button class="btn o" type="submit">Continue</button></form></div>');
+o.querySelector('.back').onclick=closeAll;
+o.querySelector('#f').onsubmit=function(e){e.preventDefault();var d={};new FormData(e.target).forEach(function(v,k){d[k]=v});d.items=cart.map(function(x){return x.n});d.time=new Date().toLocaleString();try{var a=JSON.parse(localStorage.getItem('orders')||'[]');a.push(d);localStorage.setItem('orders',JSON.stringify(a))}catch(x){}if(FORM_URL){try{fetch(FORM_URL,{method:'POST',headers:{'Content-Type':'application/json',Accept:'application/json'},body:JSON.stringify(d)})}catch(x){}}bill(d)}}
+function bill(d){closeAll();var t=cart.reduce(function(s,x){return s+x.p},0),g=Math.round(t*.18),tot=t+g+49+5;
+var o=ov('<div class="in"><button class="back">← Back</button><h2>Order Summary</h2><p style="color:#666;font-size:14px">Deliver to: '+esc(d.name)+', '+esc(d.city)+'</p><div class="bill">'+cart.map(function(x){return '<div class="row"><span>'+x.e+' '+esc(x.n)+' × 1</span><span>₹'+x.p+'</span></div>'}).join('')+'<div class="row" style="border-top:1px dashed #ccc"><span>Item total</span><span>₹'+t+'</span></div><div class="row"><span>Delivery fee</span><span>₹49</span></div><div class="row"><span>Platform fee</span><span>₹5</span></div><div class="row"><span>GST (18%)</span><span>₹'+g+'</span></div><div class="row tot"><span>To Pay</span><span>₹'+tot+'</span></div></div><button class="btn o" id="pay">Buy Now</button></div>');
+o.querySelector('.back').onclick=details;o.querySelector('#pay').onclick=prank}
+function prank(){closeAll();var o=ov('<div class="pop"><div style="font-size:70px">🤡</div><h1>CHUTIYE HO APP 🤡🤡</h1><p>Kuch nahi milega. Sab mazaak tha. 😂</p><button class="btn o" id="ok">Phir se try karo</button></div>');o.className='ov pk';o.style.cssText='inset:0';
+var em=['🤡','🤡','😂','🎈'];for(var i=0;i<30;i++){var r=document.createElement('span');r.className='rain';r.textContent=em[i%4];r.style.left=Math.random()*95+'%';r.style.animationDuration=(2+Math.random()*3)+'s';r.style.animationDelay=Math.random()*2+'s';o.appendChild(r)}
+o.querySelector('#ok').onclick=function(){cart=[];$('cc').textContent=0;closeAll()}}
+$('cb').onclick=function(){if(cart.length)details()};
+function admin(){var a=[];try{a=JSON.parse(localStorage.getItem('orders')||'[]')}catch(x){}
+var o=ov('<div class="in"><button class="back">← Close</button><h2>Victims (this device)</h2><div class="ad">'+(a.length?a.map(function(d){return '<div><b>'+esc(d.name)+'</b> · '+esc(d.phone)+' · '+esc(d.email||'')+'<br>'+esc(d.address)+', '+esc(d.city)+' '+esc(d.pin)+'<br>'+esc((d.items||[]).join(', '))+' · '+esc(d.time)+'</div>'}).join(''):'No orders yet.')+'</div></div>');o.querySelector('.back').onclick=function(){closeAll();location.hash=''}}
+function hs(){if(location.hash=='#admin'){closeAll();admin()}}
+window.onhashchange=hs;hs();
+</script></body></html>
